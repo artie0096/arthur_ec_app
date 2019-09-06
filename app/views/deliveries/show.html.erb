@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Method:</strong>
+  <%= @delivery.method %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @delivery.name %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @delivery.phone_number %>
+</p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @delivery.fee %>
+</p>
+
+<%= link_to 'Edit', edit_delivery_path(@delivery) %> |
+<%= link_to 'Back', deliveries_path %>

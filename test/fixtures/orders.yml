@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2019-08-23
+  delivery_name: MyString
+  delivery_address: MyString
+  total_fee: 1
+
+two:
+  date: 2019-08-23
+  delivery_name: MyString
+  delivery_address: MyString
+  total_fee: 1

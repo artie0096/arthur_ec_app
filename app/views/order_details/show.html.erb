@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @order_detail.color %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @order_detail.size %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @order_detail.weight %>
+</p>
+
+<p>
+  <strong>Regular price:</strong>
+  <%= @order_detail.regular_price %>
+</p>
+
+<p>
+  <strong>Selling price:</strong>
+  <%= @order_detail.selling_price %>
+</p>
+
+<p>
+  <strong>Stock quantity:</strong>
+  <%= @order_detail.stock_quantity %>
+</p>
+
+<%= link_to 'Edit', edit_order_detail_path(@order_detail) %> |
+<%= link_to 'Back', order_details_path %>

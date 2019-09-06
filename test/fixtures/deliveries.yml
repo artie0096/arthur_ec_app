@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  method: MyString
+  name: MyString
+  phone_number: 1
+  fee: 1
+
+two:
+  method: MyString
+  name: MyString
+  phone_number: 1
+  fee: 1

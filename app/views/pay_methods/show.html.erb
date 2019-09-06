@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Method:</strong>
+  <%= @pay_method.method %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pay_method.name %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @pay_method.phone_number %>
+</p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @pay_method.fee %>
+</p>
+
+<%= link_to 'Edit', edit_pay_method_path(@pay_method) %> |
+<%= link_to 'Back', pay_methods_path %>
