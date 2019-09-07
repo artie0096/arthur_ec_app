@@ -18,9 +18,31 @@
         <td><%= product.product_name %></td>
         <td><%= product.origin_country %></td>
         <td><%= product.delivery_require_day %></td>
+        <td><%= product.supplier.name %></td>
+        <td>
+          <% product.product_tags.each do |product_tag| %>
+            <span style="background: #aaa; color:white; border-radius: 2px; padding: 5px; margin: 3px;font-size: 11px ">
+              <%= product_tag.tag.label %>
+            </span>
+          <% end %>
+        </td>
+
+        <td>
+          <% product.product_categories.each do |product_category| %>
+            <span style="background: #aaa; color:white; border-radius: 2px; padding: 5px; margin: 3px;font-size: 11px ">
+              <%= product_category.category.name %>
+            </span>
+          <% end %>
+        </td>
+
         <td><%= link_to 'Show', product %></td>
+
+        <% if user_signed_in? %>
+          <% if (current_user.role == '管理者' || current_user.role == '業者')%>
           <td><%= link_to 'Edit', edit_product_path(product) %></td>
           <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
          
       </tr>
     <% end %>

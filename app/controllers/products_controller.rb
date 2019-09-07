@@ -30,6 +30,30 @@ class ProductsController < ApplicationController
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
+
+        params[:product][:tag_ids].each do |tag_id|
+          if tag_id != ""
+
+            @product_tag = ProductTag.new(
+              product_id: Product.last.id,
+              tag_id: tag_id.to_i
+            )
+            @product_tag.save
+          end
+        end
+
+        params[:product][:category_ids].each do |category_id|
+          if category_id != ""
+
+            @product_category = ProductCategory.new(
+              product_id: Product.last.id,
+              category_id: category_id.to_i
+            )
+            @product_category.save
+            logger.debug @product_category.errors.inspect
+          end
+        end  
+        
       else
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }

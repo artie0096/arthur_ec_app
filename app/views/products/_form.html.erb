@@ -35,11 +35,17 @@
 
   <div>
     <%= form.label :tag %>
-    <%= form.collection_select :tag_ids, Tag.all, :id, :label,  :prompt => "選択してください", multiple: true, class: "searchable" %>
+    <%= form.collection_select(:tag_ids, Tag.all, :id, :label, {}, {class: "searchable", multiple: "multiple"}) %>
   </div>
 
+  <div>
+    <%= form.label :category %>
+    <%= form.collection_select(:category_ids, Category.all, :id, :name, {}, {class: "searchable", multiple: "multiple"}) %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+ 
