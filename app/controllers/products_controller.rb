@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
               category_id: category_id.to_i
             )
             @product_category.save
-            logger.debug @product_category.errors.inspect
+            # logger.debug @product_category.errors.inspect
           end
         end  
         

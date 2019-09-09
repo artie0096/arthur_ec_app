@@ -15,6 +15,27 @@
   <%= @product.delivery_require_day %>
 </p>
 
+<p>
+  <strong>Supplier:</strong>
+  <%= @product.supplier.name %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <% @product.product_tags.each do |product_tag| %>
+  <%= product_tag.tag.label %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Categories:</strong>
+  <% @product.product_categories.each do |product_category| %>
+  <%= product_category.category.name %>
+  <% end %>
+</p>
+
+
+
     <%= link_to 'Edit', edit_product_path(@product) %> |
     <%= link_to 'Back', products_path %>
 
