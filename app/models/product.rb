@@ -3,7 +3,5 @@ class Product < ApplicationRecord
   has_many :product_details
   has_many :product_categories
   has_many :product_tags
-
-   accepts_nested_attributes_for :product_tags, allow_destroy: true
-   accepts_nested_attributes_for :product_categories, allow_destroy: true
+  # has_many :tags, through: :product_tags
 end

@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   resources :product_categories
   resources :product_images
   resources :suppliers
-  resources :products
+  resources :products do
+     resources :product_details
+   end
   resources :pay_methods
   resources :deliveries
   resources :order_details
-  resources :product_details
+ 
   resources :orders
   devise_for :users
   root 'home#top'

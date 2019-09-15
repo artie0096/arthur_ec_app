@@ -64,6 +64,8 @@ gem "jquery-rails" # jQueryを使用できるようにする
 gem "jquery-turbolinks" # Turbolinksで遷移したときもjQuery.ready()を呼び出してくれる
 gem "select2-rails" 
 
+gem 'carrierwave'
+
 group :production do
   gem 'pg'
 end

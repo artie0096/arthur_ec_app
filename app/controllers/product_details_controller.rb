@@ -1,10 +1,12 @@
 class ProductDetailsController < ApplicationController
   before_action :set_product_detail, only: [:show, :edit, :update, :destroy]
-
+  # before_action :set_product, 
   # GET /product_details
   # GET /product_details.json
   def index
-    @product_details = ProductDetail.all
+    @product_details = ProductDetail.where(product_id: params[:product_id])
+    @product = Product.find(params[:product_id])
+
   end
 
   # GET /product_details/1
@@ -25,10 +27,11 @@ class ProductDetailsController < ApplicationController
   # POST /product_details.json
   def create
     @product_detail = ProductDetail.new(product_detail_params)
+    @product_detail.product_id = params[:product_id]
 
     respond_to do |format|
       if @product_detail.save
-        format.html { redirect_to @product_detail, notice: 'Product detail was successfully created.' }
+        format.html { redirect_to "/products/#{params[:product_id]}/product_details/#{@product_detail.id}", notice: 'Product detail was successfully created.' }
         format.json { render :show, status: :created, location: @product_detail }
       else
         format.html { render :new }
@@ -69,6 +72,10 @@ class ProductDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_detail_params
-      params.require(:product_detail).permit(:color, :size, :weight, :regular_price, :selling_price, :stock_quantity)
+      params.require(:product_detail).permit(:color, :size, :weight, :regular_price, :selling_price, :stock_quantity, :product_id, :product_image)
     end
+
+    # def set_product
+    #   @current_product = Product.find(params[:id])
+    # end
 end
