@@ -33,11 +33,12 @@
  
   </div>
 
+          
   <div>
     <%= form.label :tag %>
     <%= form.collection_select(:tag_ids, Tag.all, :id, :label, {}, {class: "searchable", multiple: "multiple"}) %>
-  </div>
 
+  </div>
   <div>
     <%= form.label :category %>
     <%= form.collection_select(:category_ids, Category.all, :id, :name, {}, {class: "searchable", multiple: "multiple"}) %>
@@ -49,3 +50,13 @@
 <% end %>
 
  
+<script>
+  <% product.product_tags.each do |product_tag| %>
+    $("#product_tag_ids option[value=" + <%= product_tag.tag.id %> + "]").attr("selected","selected")
+  <% end %>
+
+  <% product.product_categories.each do |product_category| %>
+    $("#product_category_ids option[value=" + <%= product_category.category.id %> + "]").attr("selected","selected")
+  <% end %>
+  
+</script>

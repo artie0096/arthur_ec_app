@@ -15,6 +15,68 @@
   <%= @product.delivery_require_day %>
 </p>
 
+<p>
+  <strong>Supplier:</strong>
+  <%= @product.supplier.name %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <% @product.product_tags.each do |product_tag| %>
+  <%= product_tag.tag.label %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Categories:</strong>
+  <% @product.product_categories.each do |product_category| %>
+  <%= product_category.category.name %>
+  <% end %>
+</p>
+
+<h1>Product Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th>Size</th>
+      <th>Weight</th>
+      <th>Regular price</th>
+      <th>Selling price</th>
+      <th>Stock quantity</th>
+      <th>Product Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_details.each do |product_detail| %>
+      <tr>
+        <td><%= product_detail.color %></td>
+        <td><%= product_detail.size %></td>
+        <td><%= product_detail.weight %></td>
+        <td><%= product_detail.regular_price %></td>
+        <td><%= product_detail.selling_price %></td>
+        <td><%= product_detail.stock_quantity %></td>
+        <td>  
+          <% if product_detail.product_image? %>
+          <%= image_tag product_detail.product_image.url,  :size =>'34x48' %>
+          <% else %>画像がありません
+          <% end %>
+        </td>
+        <td><%= link_to 'Show', "/products/#{@product.id}/product_details/#{product_detail.id}" %></td>
+        <td><%= link_to 'Edit', "/products/#{@product.id}/product_details/#{product_detail.id}/edit" %></td>
+        <td><%= link_to 'Destroy', "", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
     <%= link_to 'Edit', edit_product_path(@product) %> |
     <%= link_to 'Back', products_path %>
 
+    <%= link_to '商品詳細作成', "/products/#{@product.id}/product_details/new" %>

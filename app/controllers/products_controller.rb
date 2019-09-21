@@ -10,6 +10,8 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    # @product_detail = ProductDetail.find(params[:id]) #product_detailid がnill
+    @product_details = ProductDetail.where(product_id: params[:id])
   end
 
   # GET /products/new
@@ -28,9 +30,6 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-
         params[:product][:tag_ids].each do |tag_id|
           if tag_id != ""
 
@@ -50,10 +49,12 @@ class ProductsController < ApplicationController
               category_id: category_id.to_i
             )
             @product_category.save
-            logger.debug @product_category.errors.inspect
+            # logger.debug @product_category.errors.inspect
           end
         end  
-        
+
+        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.json { render :show, status: :created, location: @product }        
       else
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -66,6 +67,33 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
+
+        ProductTag.where(product_id: @product.id).destroy_all
+        ProductCategory.where(product_id: @product.id).destroy_all
+
+        params[:product][:tag_ids].each do |tag_id|
+          if tag_id != ""
+
+            @product_tag = ProductTag.new(
+              product_id: @product.id,
+              tag_id: tag_id.to_i
+            )
+            @product_tag.save
+          end
+        end
+
+        params[:product][:category_ids].each do |category_id|
+          if category_id != ""
+
+            @product_category = ProductCategory.new(
+              product_id: @product.id,
+              category_id: category_id.to_i
+            )
+            @product_category.save
+            # logger.debug @product_category.errors.inspect
+          end
+        end  
+
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -93,7 +121,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:product_name, :origin_country, :delivery_require_day, :supplier_id)
+      params.require(:product).permit(:product_name, :origin_country, :delivery_require_day, :supplier_id) 
     end
 
     def check_admin

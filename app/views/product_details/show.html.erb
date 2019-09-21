@@ -30,5 +30,14 @@
   <%= @product_detail.stock_quantity %>
 </p>
 
-<%= link_to 'Edit', edit_product_detail_path(@product_detail) %> |
-<%= link_to 'Back', product_details_path %>
+<p>
+  <strong>Picture:</strong>
+  <% if @product_detail.product_image? %>
+  <%= image_tag @product_detail.product_image.url,  :size =>'320x480' %>
+<% end %>
+
+
+
+
+  <%= link_to 'edit', "/products/#{params[:product_id]}/product_details/#{@product_detail.id}/edit" %>
+   
