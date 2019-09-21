@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_090526) do
+ActiveRecord::Schema.define(version: 2019_09_21_154111) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_090526) do
     t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "product_image"
   end
 
   create_table "product_images", force: :cascade do |t|
@@ -130,6 +131,12 @@ ActiveRecord::Schema.define(version: 2019_08_26_090526) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 2
+    t.string "bank_account_name"
+    t.string "bank_account_branch"
+    t.string "bank_account_number"
+    t.string "bank_account_holder"
+    t.string "bank_account_type"
+    t.boolean "is_yucho"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

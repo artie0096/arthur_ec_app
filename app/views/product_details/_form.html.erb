@@ -1,5 +1,4 @@
-
-<%= form_with(model: product_detail, url: "/products/#{params[:product_id]}/product_details", local: true) do |form| %>
+<%= form_with(model: product_detail, url: "/products/#{params[:product_id]}/product_details/#{@product_detail.id}", local: true) do |form| %>
   <% if product_detail.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(product_detail.errors.count, "error") %> prohibited this product_detail from being saved:</h2>
@@ -52,7 +51,7 @@
     <%= form.file_field :product_image, class: "image" %>
   </div>
 
-  <p><%= form.check_box :destroy_product_iamge %>画像を削除する</p>
+  <p><%= form.check_box :remove_product_iamge %>画像を削除する</p>
    
 
 

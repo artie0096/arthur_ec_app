@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :suppliers
   resources :products do
      resources :product_details
-   end
+  end
   resources :pay_methods
   resources :deliveries
   resources :order_details
