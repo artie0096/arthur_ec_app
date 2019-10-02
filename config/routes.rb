@@ -13,13 +13,18 @@ Rails.application.routes.draw do
   resources :order_details
  
   resources :orders
-  devise_for :users
+
+  devise_for :users, controllers: {
+    :registrations => 'users/registrations',
+  }
   root 'home#top'
 
-#   devise_for :users, controllers: {
-#     :registrations => 'users/registrations',
-#     :sessions => 'users/sessions'
-# }
+  resources :carts, only: [:show]
+
+  post '/add_item' => 'carts#add_item'
+  post '/update_item' => 'carts#update_item'
+  delete '/delete_item' => 'carts#delete_item'
+
 # 　resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

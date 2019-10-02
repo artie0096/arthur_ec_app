@@ -31,6 +31,44 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+  <% if current_user.role != "一般ユーザー" %>
+    <div class="only_trader">
+
+      <div class="field">
+        <%= f.label :"どこの" %>
+        <%= f.select('is_yucho', options_for_select({"ゆうちょ銀行": true, "それ以外の銀行": false}), include_blank: true) %>
+      </div>
+      
+
+      <div class="field">
+        <%= f.label :"銀行" %>
+        <%= f.text_field :bank_account_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :bank_account_branch ,:id=>"bank_account_branch_label"%>
+        <%= f.text_field :bank_account_branch %>
+      </div>
+
+      <div class="field">
+        <%= f.label :bank_account_number %>
+        <%= f.text_field :bank_account_number %>
+      </div>
+
+      <div class="field">
+        <%= f.label :bank_account_holder %>
+        <%= f.text_field :bank_account_holder %>
+      </div>
+
+      <div class="field" id="bank_account_type_container">
+      <%= f.radio_button :bank_account_type, :nomal %>
+      <%= f.label :bank_account_type, "普通", {value: :nomal, style: "display: inline-block;"} %>
+      <%= f.radio_button :bank_account_type, :save %>
+      <%= f.label :bank_account_type, "預金", {value: :save, style: "display: inline-block;"} %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
