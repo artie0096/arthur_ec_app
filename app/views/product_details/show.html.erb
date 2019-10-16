@@ -20,7 +20,7 @@
   <%= @product_detail.regular_price %>
 </p>
 
-<p>
+<p> 
   <strong>Selling price:</strong>
   <%= @product_detail.selling_price %>
 </p>
@@ -35,9 +35,23 @@
   <% if @product_detail.product_image? %>
   <%= image_tag @product_detail.product_image.url,  :size =>'320x480' %>
 <% end %>
+</p>
+ 
+<p>
+  <%= form_with(url: "/add_item", local: true) do |form| %>
+    <button>カートに追加する</button>
+    <input type="number" name="order_quantity">
+    <input type="hidden" name="product_detail_id" value="<%= @product_detail.id %>">
+  <% end %>
+</p>
+
+<% Cart.all.each do |cart| %>
+  <%= cart.user_id %>
+  <%= cart.product_detail_id %>
+  <%= cart.order_quantity %><br>
+<% end %>
 
 
-
-
+<p>
   <%= link_to 'edit', "/products/#{params[:product_id]}/product_details/#{@product_detail.id}/edit" %>
-   
+</p>
